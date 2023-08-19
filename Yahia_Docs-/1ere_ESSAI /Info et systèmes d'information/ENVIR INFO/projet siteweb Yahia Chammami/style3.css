@@ -1,0 +1,33 @@
+
+header{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    padding: 20px 10px;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 0.5s;
+}
+.logo{
+    color: black;
+    font-weight: bold;
+    font-size: 2em;
+    text-decoration: none;
+}
+.logo span{
+    color: red;
+}
+
+.copyright{
+    padding: 20px 40px;
+    background: white;
+    text-align: center;
+}
+#f{
+    position: absolute;
+    height: 20px;
+    bottom: -10px; 
+}

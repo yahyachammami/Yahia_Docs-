@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Tunisian Restaurant</title>
+<body>
+<header>
+    <a href="#" class="logo"><span>Tunisian</span>Restaurant</a>
+    <div class="menuToggle" onclick="toggleMenu();"></div>
+    <ul class="navbar">
+        <li><a href="#banniere" onclick="toggleMenu();">Accueil</a></li>
+        <li><a href="#apropos" onclick="toggleMenu();">A propos</a></li>
+        <li><a href="#menu" onclick="toggleMenu();">Menu</a></li>
+        <a href="#Reservation" class="btn1"onclick="toggleMenu();">Reservation</a>
+    </ul>
+</header>
+<section class="banniere" id="banniere">
+    <div class="contenu">
+        <h2>Que Des Plats Tunisians ! </h2>    
+        <a href="#menu" onclick="toggleMenu();" class="btn1">Notre Menu</a>
+    </div>
+</section>
+<section class="apropos" id="apropos">
+    <div class="row">
+        <div class="col50">
+            <h2 class="titre-texte"><span>A</span> Propos De Nous</h2>
+            <p>Tunisian Restaurant est une version moderne de la cuisine tunisienne.
+                Son objectif est d'apporter ces nouvelles saveurs, anciennes et diverses à la scène culinaire de Marseille. Lorsque vous utilisez des ingrédients locaux combinés avec des épices tunisiennes,
+                le résultat est magique ! .</p>
+             
+            <p>Nous n'utilisons que des produits frais et biologiques provenant directement de nos fournisseurs locaux ainsi que de Tunisie afin d'apporter un goût et une expérience uniques à tous nos clients.</p>    
+        </div>
+        <div class="col50">
+            <div class="img">
+                <img src="./images/plat3.jpg" >
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu" id="menu">
+    <div class="titre">
+        <h2 class="titre-texte"><span>M</span>enu</h2>
+        <p>Notre Menu est une fusion de saveurs tunisiennes originales. </p>
+    </div>
+    <div class="contenu">
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c1.jpg">
+            </div>
+            <div class="text">
+                <h3> COUSCOUSS </h3>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c2.jpg">
+            </div>
+            <div class="text">
+                <h3>JELBENA </h3>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c3.jpg">
+            </div>
+            <div class="text">
+                <h3>MLOUKHIYA</h3>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c4.jpg">
+            </div>
+            <div class="text">
+                <h3>RECHTA</h3>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c5.jpg">
+            </div>
+            <div class="text">
+                <h3>MAKARUNA</h3>
+            </div>
+        </div>
+        <div class="box">
+            <div class="imbox">
+                <img src="./images/c6.jpg">
+            </div>
+            <div class="text">
+                <h3>DWIDA</h3>
+            </div>
+        </div>
+    </div>
+</section>
+ <section class="Reservation" id="Reservation">
+     <div class="titre noir">
+         <h2 class="titre-text"><span>R</span>eservation</h2>
+         <p>SVP CLIQUER ICI POUR RESERVER .</p>
+         <a href="res.html" onclick="toggleMenu();" class="btn1">Reserver</a>
+     </div>
+ </section>
+
+ <script src="code.js"></script>
+ <footer class="copyright"> &copy;yahya chammami +216 46 291 123  ariana 29nov2022</footer>
+
+</body>
+</html>
