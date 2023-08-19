@@ -1,0 +1,14 @@
+
+interpretation : 
+
+au gauche en haut on remarque la presence des variables "etudiant" et "4fois et +" cela signifie que les etudiant sont ceux qui se visit frequament
+ la magasin avec les retraites qui se situee dans la carte entre les variables "4fois et +" et "3 fois" . c'est bien explique parceque 
+les etudiant et les retraite ont le plus de temps libre et moins des responsabilty que les autres individus .
+
+au droite en haut : presence des variables "cadre" et "2 fois" . et en bas la presence de variable 
+"profession liberale" entre "2fois" et "3fois" . on peut conclure que les cadre et les profession 
+liberale visite moderament la magasin par rapport au retraite et etudiant a cause de manque de temps puisuqe ils travailles
+
+finalemnt on observe que au centre de carte se situee les variables "ouvrier" et "1 fois" et ca 
+est bien explique par le faite que les ouvrier ont moins de temps a cause de travaille , et de plus
+ manque d'argent a resulte que les ouvriers visit la magasin seulemnt 1 fois par semain 

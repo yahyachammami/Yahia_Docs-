@@ -1,0 +1,246 @@
+﻿# Exercice 1
+
+library(cluster)
+library(FactoMineR)
+data("decathlon")
+X=decathlon[,1:10]
+
+# 1ère façon 
+classif<-agnes(X, method="ward")
+
+plot(classif,xlab="individu",main="")
+title("Dendrogramme")
+
+##### Autre fonction : hclust qui prend en argulment une matrice de dissimilarité #####
+# Pour une classif sur var quali : transformer en var binaire (TDC) puis aller sur le site de dis.binary :
+# https://www.rdocumentation.org/packages/ade4/versions/1.7-6/topics/dist.binary
+# ou sur le site de dist.chisquare :
+# http://forums.cirad.fr/logiciel-r/viewtopic.php?t=5128
+
+d=dist(scale(X),method = "euclidian")
+hc1=hclust(d,method = "ward.D") # or complete or average
+plot(hc1)
+plot(hc1, hang = -1)
+
+# Output hclust
+hc1$dist.method
+hc1$method
+hc1$height
+hc1$order## Order des indivuds sur le dendogramme
+hc1$merge## Déroulement du processus d'aggrégation.
+
+
+###### La fonction hclust de cluster prend en argument aussi bien une matrice 
+###### ind*var et une matrice de dissimilarité : 
+###### elle joue à la fois le rôle de agnes et de hclust.
+
+#2. Déterminer la meilleure partition
+
+classif2<-as.hclust(classif)
+plot(rev(classif2$height), type="h", ylab="hauteurs")
+rect.hclust(hc1,k=2)
+classes<-cutree(classif2,k=2)
+classes
+
+
+
+#Visualiser l'effet coude.Combien de classes peut-on consid?rer ? 
+
+plot(1:40,hc1$height[40:1],type="b") 
+## Un presque effet de coude existe en 5 classes.
+
+inertie = sort(hc1$height,decreasing=TRUE)
+plot(inertie[1:20],type="s",xlab="Nombre de classes", ylab="Inertie")
+
+
+#3. Rajouter la classe d'affectation de chaque individu en tant que variable
+
+decathlon.comp<-cbind.data.frame(X, as.factor(classes))
+colnames(decathlon.comp)[11]<-"Classe"
+head(decathlon.comp)
+
+
+#4. Description des classes
+#   La fonction catdes permet de trier les variables quanti de la plus caractérisante à la moins caractérisante en positif
+
+res.cat=catdes(decathlon.comp, num.var=11)
+
+# #proba: the significance threshold considered to characterize the category (by default 0.05)
+
+
+# description d'une var quali par une var quanti ou quali 
+
+# p-value correspond à la significativité de la différence entre les proportions Mod/Cla et Global 
+
+
+
+#5. Représentation des classes sur un plan factoriel
+
+
+res.pca<-PCA(decathlon,quanti.sup=11:12,quali.sup=13)
+plot(res.pca,choix="ind",habillage=13)
+
+
+#6. Représentation des classes sur un plan factoriel : procédure HCPC
+
+res.pca<-PCA(decathlon,quanti.sup=11:12, ncp=Inf, graph=F, quali.sup=13)
+#res.hcpc<-HCPC(res.pca,consol=FALSE)
+res.hcpc<-HCPC(res.pca)
+
+
+## Exercice 2 :
+
+library(cluster)
+library(FactoMineR)
+
+data(iris)
+res.pca<-PCA(iris, quali.sup=5)
+plot(res.pca,choix="ind",habillage=5)
+
+X<-iris[,-5]
+classif<-agnes(X, method="ward")
+plot(classif,xlab="individu",main="")
+title("Dendrogramme")
+
+
+
+#Comparing partitions
+library(mclust)
+library(fossil)
+
+y<-as.numeric(iris[,5])
+
+#Comparaison entre la partition en 2 classes et les 3 classes naturelles
+p2<-cutree(classif,k=2)
+p2
+table(p2, y)
+adjustedRandIndex(p2, y)
+
+adj.rand.index(p2, y) # package fossil
+
+# Remarque : Le adj.rand.index du package fossil pose problème en cas de 
+# nombre de classes différenrs dans les 2 partitions comparées
+rand.index(p2, y) # package fossil
+
+
+#Comparaison entre la partition en 3 classes et les 3 classes naturelles
+
+p3<-cutree(classif,k=3)
+p3
+table(p3, y)
+adjustedRandIndex(p3, y)
+
+adj.rand.index(p3, y)
+rand.index(p3, y)
+
+
+# NbClust : Utiliser le packages NbClust pour d?terminer le nombre optimal des classes. 
+# Cet algorithme int?gre une trentaine d'indices de performances de la classification. 
+# Utiliser 26 crit?res pour calculer la qualit? des classifications
+
+library(NbClust)
+
+
+set.seed(1234)
+nc_km <- NbClust(X, min.nc = 2, max.nc = 15, method = "kmeans" )
+nc_wd<- NbClust(X, min.nc = 2, max.nc = 15, method = "ward.D" )
+# On a utilis? 26 crit?res pour calculer la qualit? des classifications
+sum(table(nc_km$Best.n[1, ]))
+
+# Afficher le graphique des nombres de classes
+barplot(table(nc_km$Best.n[1, ]), xlab = "Number of Clusters", ylab = "Number of Criteria",  main = "Number of Clusters Chosen by 26 Criteria")
+
+cl3 = kmeans(X, centers = 3)  
+cl3$cluster
+cl3$centers
+
+
+#############
+     EM
+#############
+
+# Em sur 2 gaussiennes dependantes :
+
+library(mclust)
+library(MASS)
+
+sig1<-matrix(c(1,.7,.7,1),2,byrow = T)
+mu1<-c(0,0)
+sig2<-matrix(c(1,0,0,1),2,byrow = T)
+mu2<-c(5,5)
+
+X = matrix(nrow=100,ncol=2) # une ligne de la matrice = un point (x,y)
+
+
+for (i in 1:100) {
+  Z = rbinom(1,1,2/5) # choix de la loi par tirage de Bernoulli
+  if (Z == 1) {
+    X[i,] = mvrnorm(1,mu1,sig1)
+  } else {
+    X[i,] = mvrnorm(1,mu2,sig2)
+  }
+}
+plot(X,xlab="x",ylab="y",main="Melange de gaussiennes bidimensionnelles")
+X
+BIC <- mclustBIC(X)
+plot(BIC)
+emX<-Mclust(X, x=BIC)
+
+emX$classification
+
+# Em sur les iris
+
+data(iris)
+Y<-iris[,1:4]
+
+BICiris<-mclustBIC(iris[,1:4])
+plot(BICiris)
+BICiris
+emY<-Mclust(Y, x=BICiris)
+emX$classification
+
+
+
+###########
+SOM
+###########
+library(kohonen)
+Z <- scale(Y,center=T,scale=T)
+set.seed(100)
+carte <- som(Z,grid=somgrid(5,3,"hexagonal"))
+degrade.bleu <- function(n){return(rgb(0,0.4,1,alpha=seq(0,1,1/n))) }
+plot(carte,type="count",palette.name=degrade.bleu)
+nb <- table(carte$unit.classif)
+nb
+
+nb <- table(carte$unit.classif) 
+print(nb)
+print(length(nb))
+plot(carte,type="dist.neighbours")
+plot(carte,type="codes",codeRendering = "segments")
+
+print(carte$code)
+x<-as.data.frame(carte$code) 
+x
+dc<-dist(x) 
+dc
+
+library(cluster)
+cah <- hclust(dc,method="ward.D2")
+cah <- hclust(dc,method="ward.D2",members=nb)
+plot(cah,hang=-1,labels=F)
+groupes <- cutree(cah,k=3)
+groupes
+rect.hclust(cah,k=3)
+plot(carte,type="mapping",bgcol=c("steelblue1","sienna1","yellowgreen")[groupes]) 
+add.cluster.boundaries(carte,clustering=groupes)
+ind.groupe <- groupes[carte$unit.classif] 
+print(ind.groupe)
+table(ind.groupe,iris[,5])
+
+
+
+
+
+
+

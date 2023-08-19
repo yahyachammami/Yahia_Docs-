@@ -1,0 +1,258 @@
+---
+title: "TP1 Analyse en Composantes Principales"
+author: "Ghazi Bel Mufti"
+date: "26 mars 2020"
+output: 
+  html_document: 
+    fig_height: 4
+    fig_width: 6
+---
+
+
+La base de données {\tt Decathlon} se trouve dans le \texttt{package FactoMineR}. Les données contiennent les performances d' athlètes lors de deux compétitions.
+Le tableau de données contient 41 lignes et 13 colonnes.
+Les colonnes de 1 à 12 sont des variables continues: les dix premières colonnes correspondent aux performances des athlètes pour les dix épreuves du décathlon et les colonnes 11 et 12 correspondent respectivement au rang et au nombre de points obtenus. La dernière colonne est une variable qualitative correspondant au nom de la compétition (Jeux Olympiques de 2004 ou Décastar 2004).
+
+# Objectifs de l'ACP 
+L'ACP permet de décrire un jeu de données, de le résumer, d'en réduire la dimensionnalité.
+L'ACP réalisée sur les individus du tableau de données répond à différentes questions :
+
+ - Etude des individus (i.e. des athlètes) : deux athlètes sont proches s'ils ont des résultats similaires. On s'intéresse à la variabilité entre individus. Y a-t-il des similarités entre les individus pour toutes les variables ? Peut-on établir des profils d'athlètes ? Peut-on opposer un groupe d'individus à un autre ?
+ - Etude des variables (i.e. des performances) : on étudie les liaisons linéaires entre les variables. Les objectifs sont de résumer la matrice des corrélations et de chercher des variables synthétiques: peut-on résumer les performances des athlètes par un petit nombre de variables ?
+
+- Lien entre les deux études : peut-on caractériser des groups d'individus par des variables ?
+
+
+
+
+# Importer et explorer le jeu de données
+
+```{r, echo=TRUE}
+library(FactoMineR)
+data(decathlon)
+head(decathlon)
+tail(decathlon)
+str(decathlon) # competition variable nominale, catégorielle comme sexe (H ou F). Le reste des variables sont des variables quantitatives.
+summary(decathlon)
+```
+
+
+
+# ACP normée pas à pas
+
+On commence par définir la matrice $X$ composée des scores des dix épreuves du decathlon. On définit la matrice des poids $D=\displaystyle\frac{1}{n}I_n$, $n$ étant la taille de l'échantillon ainsi que la métrique $M=I_p$. 
+
+## 1. Calcul de la matrice centrée réduite
+
+Centrer et réduire la matrice $X$
+
+```{r, echo=TRUE}
+
+X=as.matrix(decathlon[,1:10])
+g=colMeans(X)
+g
+Y=sweep(x = X,2,g,FUN = '-')
+round(colMeans(X),3)
+```
+
+Calcul des écarts-types pour réduire les variables.  
+
+```{r, echos=T}
+n=nrow(X)
+p=ncol(X)
+et=apply(Y,2,function(x) sqrt(sum(x^2)/n))
+et
+```
+Calcul de la matrice des données  entrées réduites $Z$. On vérifie que les variables de cette matrice sont bien de variance égale à 1.
+```{r, echos=T}
+Z=sweep(x = Y,2,et,FUN = '/')
+colSums(Z^2)/n
+
+```
+
+## 2. Calcul de la matrice des corrélations
+
+Calcul de la matrice des corrélations $R=Z'DZ$, ses valeurs propres et ses vecteurs propres.
+
+
+```{r, echo=TRUE}
+M=diag(rep(1,p)) 
+D=(1/n)*diag(rep(1,n))
+R=t(Z)%*%D%*%Z
+vp=eigen(R %*%M)
+lambda=vp$values
+lambda
+U=vp$vectors
+U
+```
+
+Vérifions que les vecteurs propres (i.e. les colonnes de $U$) sont bien orthornormés. 
+
+```{r, echo=TRUE}
+round(t(U)%*%U,3)
+```
+
+## 3. Les composantes principales
+
+Calculons la matrice $Psi$ des composantes principales qui est donnée par $Psi=Zu$. On verifiera que la variance de chaque composante est égale à la valeur propore correspondante.
+
+```{r, echo=TRUE}
+Psi=Z%*%U
+Psi
+round(t(Psi)%*%D%*%Psi,3)
+```
+
+## 4. Les coordonnées des variables sur les axes
+
+Calculons la matrice $Eta$ des coordonnées des variables sur les axes principaux par $Eta_\alpha = \sqrt{(\lambda_\alpha)} u_\alpha$. 
+
+```{r,echo=TRUE,}
+Eta<-sweep(U,2,sqrt(lambda),FUN='*')
+Eta 
+```
+
+
+# ACP normée avec le package FactoMineR et interprétation de l'ACP.
+  
+Utilisons maintenant la fonction PCA pour retrouver les résultats obtenus précédemment. 
+ 
+ - On va ajouter deux types de variables comme variables supplémentaires : on ajoute les variables "Rank" and "Points" comme variables continues illustratives et la variable "compétition" comme variable qualitative illustrative.
+Les variables illustratives n'influencent pas la construction des composantes principales de l'analyse. 
+
+ - Notons que nous utilisons le package factoextra plutôt que FactoMineR pour la qualité de ces graphiques.
+  
+  
+## 1. Pertinence de l'ACP 
+  
+ Le corrgram donné ci-dessous permet d'étudier les corrélations entre les variables quantitatives : il est clair qu'il existe des corrélations importantes entre des groupes de variables ce qui suggère la pertinence de cette ACP (par exemple, 100m, 400m et 110m.hurdle).
+
+```{r ,echo=TRUE,fig.width=7,fig.height=5}
+library(corrplot)
+X=as.matrix(decathlon[,c(1:10)])
+M<-cor(X)
+library(RColorBrewer)
+corrplot(M, type="upper", order="hclust", 
+         col=brewer.pal(n=8, name="RdBu"))
+```
+
+ 
+Execution de la fonction PCA.
+
+```{r, echo=TRUE}
+library(factoextra)
+res.pca=PCA(decathlon,ncp = 5,quanti.sup = 11:12,quali.sup = 13,graph = F)
+```
+
+## 2. Choix du nombre d'axes à retenir
+
+Trois critères devront être utlisés : taux d'inertie cumulé, critère de Kaiser et critère du coude.
+
+L'objet $\tt eig$ est une matrice à trois colonnes contenants respectivement les valeurs propres de l'ACP, la proportion de variance de chaque composante et les variance cumulées par les composantes principales.   
+
+```{r, echo=TRUE}
+head(res.pca$eig)
+fviz_screeplot(res.pca, ncp=10)
+```
+
+
+a)	Critère de kaiser : on remarque qu’il y a 4 axes dont les valeurs propres sont supérieures à 1 donc on retient 4 axes d’après ce critère.
+
+b)	Critère du taux d’inertie cumulée :
+On remarque que le taux d’inertie cumulé des 2 premiers axes est de 50.09% qui est un taux important compte tenu du fait que nous avons 10 variables : on va donc, d’après ce critère, retenir les 2 premiers axes. 
+(Remarquons que retenir 3 axes pour u taux d'inertie de 64.13% est envisageable aussi).
+c)	Critère du coude : On remarque que le coude se trouve au niveau du deuxième axe (voir la figure Scree plot), d’après ce critère, on devrait retenir les 2 premiers axes.
+ 
+
+
+         
+En faisant une sorte de vote des 3 critères on devrait  retenir les 2 premiers axes.
+
+
+
+
+
+
+
+## 3. Interprétation de la carte des variables 
+
+L'objet $\tt var$ de $\tt res.pca$ contient les 4 objets  : $\tt coord$, $\tt cor$,  $\tt cos2$ et $\tt contrib$. A noter que vu que notre ACP est normée, $\tt cor$ (i.e. la corrélations d'une variable avec la composante principale d'un axe) est identique à $\tt coord$ (i.e. la coordonnée de cette variable sur cet axe). 
+
+```{r, echo=TRUE}
+names(res.pca$var)
+```
+L'objet $\tt coord$ dans $\tt var$ contient  les coordonnées des variables.
+
+```{r, echo=TRUE}
+res.pca$var$coord
+```
+
+L'objet  $\tt cos2$ dans $\tt var$ est une matrice dont les lignes représentent  le cos carrés de la variable (soit le carrée des coordonnées puisque l'ACP est normée).
+
+```{r, echo=TRUE}
+res.pca$var$cos2
+```
+
+  Interprétation de cette première carte des variables (i.e. axes 1 et 2) : 
+
+Les deux premières dimensions contiennent 50% de l'inertie totale (l'inertie est la variance totale du tableau de données, i.e. la trace de la matrice des corrélations).
+
+La variable "X100m" est négativement corrélée à la variable "long.jump". Quand un ahtlète réalise un temps faible au 100m, il peut sauter loin. Il faut faire attention ici qu'une petite valeur pour les variables "X100m", "X400m", "X110m.hurdle" et "X1500m" correspond à un score élevé : plus un athlète court rapidement, plus il gagne de points.
+
+Le premier axe oppose les athlètes qui sont "bons partout" comme Karpov pendant les Jeux Olympiques à ceux qui sont "mauvais partout" comme Bourguignon pendant le Décastar. Cette dimension est particulièrement liée aux variables de vitesse et de saut en longueur qui constituent un groupe homogène. **Si on devait donner un nom à cet axe ça serait l'axe "Agilité"**.
+
+Le deuxième axe oppose les athlètes qui sont forts (variables "Discus" et "Shot.put") à ceux qui ne le sont pas. **Si on devait donner un nom à cet axe ça serait l'axe "Force"**.
+
+
+Les variables "Discus", "Shot.put" et "High.jump" ne sont pas très corrélées aux variables "X100m", "X400m", "X110m.hurdle" et "Long.jump". Cela signifie que force et vitesse ne sont pas très corrélées. 
+
+
+
+*Variable quantitatives supplémentaires.*  Les variables les plus liées, positivement (resp. négativement), au nombre de points (resp. Rang) sont les variables qui réfèrent à la vitesse ("X100m", "X110m.hurdle", "X400m") et au saut en longueur. Au contraire, "Pole-vault" et "X1500m" n'ont pas une grande influence sur le nombre de points.
+
+```{r}
+fviz_pca_var(res.pca)
+fviz_pca_var(res.pca, col.var="cos2") +
+  scale_color_gradient2(low="white", mid="blue", 
+                        high="red", midpoint=0.6) + 
+  theme_minimal()
+```
+
+Notons que la qualité de représentation d'une variable  sur le premier plan est donnée par la somme de ses cos2 sur chacun des 2 premiers axes. 
+
+
+## 4. Interprétation de la carte des individus
+
+De la même manière, l'objet $\tt ind$ de $\tt res.pca$ contient les objets  : $\tt coord$, $\tt cos2$ et $\tt contrib$. 
+
+```{r}
+fviz_pca_ind(res.pca,geom = "point",col.ind.sup = 'gray')
+fviz_pca_ind(res.pca,geom = "text",col.ind.sup = 'gray')
+```
+
+On distingue dans ce premier plan factoriel les groupe suivants : 
+- Les athlètes rapides (comme Karpov) les athlètes rapides et puissants (comme Sebrle), les athlètes lents (comme Bourguignon ), les athlètes lents et puissants (comme Casarsa ), les athlètes rapides mais faibles (comme Warners) et les ahtlètes ni forts ni rapides (comme Lorenzo).
+```{r}
+fviz_pca_ind(res.pca,geom = "text",col.ind="cos2")+
+scale_color_gradient2(low="blue", mid="white", 
+                      high="red", midpoint=0.5)
+```
+
+
+Notons que la qualité de représentation d'un individu sur le premier plan est donnée par la somme de ses cos2 sur chacun des 2 premiers axes. 
+
+```{r}
+plot.PCA(res.pca, axes=c(1, 2), choix="ind", habillage=13, cex=0.7)
+```
+
+
+En regardant les points qui représentent "Decastar" et "Olympic Games", on voit que "Olympic Games" a une coordonnée plus élevée sur le premier axe que "Decastar". Ceci montre une évolution des performances des athlètes. Tous les athlètes qui ont participé aux deux compétitions ont obtenu des résultats légèrement meilleurs aux jeux Olympiques. 
+
+
+
+
+```{r}
+res.pca = PCA(decathlon, quanti.sup=c(11: 12), quali.sup=13, graph=F)
+plot(res.pca, choix="ind", cex=0.7)
+```
+
+*Variable qualitative supplémentaire.*  On peut tirer les mêmes conclusions en nous basant sur les positions des modalités de la variable qualitative supplémentaire Compétition :  "Olympic légèrement à droite de l'axe 1 par rapport à la modalité "Decastar".
