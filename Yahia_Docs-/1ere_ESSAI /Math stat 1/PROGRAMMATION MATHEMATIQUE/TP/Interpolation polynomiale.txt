@@ -1,0 +1,26 @@
+#Interpolation polynomiale
+var('x')
+def lagrange(f,a,b,n):
+     #xdata = [a+i*(b-a)/n for i in range (n+1)]
+     xdata = [(a+b)/2+(b-a)/2*cos((2*i+1)*float(pi)/(2*n+2)) for i in range (n+1)]
+     p = 0
+     for i in range (n+1):
+          L=1
+          for j in range (n+1):
+               if i<>j:
+                    L=L*(x-xdata[j])/(xdata[i]-xdata[j])
+          p +=f(xdata[i])*L
+     return(xdata,expand(p))
+
+html ("<H2> Interpolation polynomiale</H2>")
+#html ("<I> Exemple de simulations avec les points equidistants</I>")
+html ("<I> Exemple de simulations avec les zero de tchebycheff</I>")
+
+@interact
+def _(f=x^2,a=-1,b=1,n=(2,(1..35))):
+     (xdata,p)=lagrange(f,a,b,n)
+     show(p)
+     A = plot(f,a,b,color="red")+plot(p,a,b,color="blue")
+     for i in range (n+1):
+          A += point((xdata[i],f(xdata[i])),color="black",size=30)
+     show(A)

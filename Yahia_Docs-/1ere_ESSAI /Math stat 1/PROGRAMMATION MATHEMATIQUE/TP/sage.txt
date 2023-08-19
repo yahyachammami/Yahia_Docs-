@@ -1,0 +1,17 @@
+(analyse matricielle)
+import pylab
+import numpy
+
+A = numpy.mean(pylab.imread( DATA+'hhh.png'),2)
+show(matrix_plot(A))        ('hhh.png'=photo de type png on choisi sur sagemath l'icone Data puis create a file )
+
+
+u,s,v = numpy.linalg.svd(A)
+A.shapeS = numpy.zeros(A.shape)
+S[:len(s),:len(s)]=numpy.diag(s)
+
+
+@interact
+def _(i=(2,(1..A.shape[0]))):
+Aapprox = numpy.dot(numpy.dot(u[:,:i],s[:i,:i]),v[:i,:])
+show(graphics_array([matrix_plot(Aapprox),matrix_plot(A)]) , axes=false)

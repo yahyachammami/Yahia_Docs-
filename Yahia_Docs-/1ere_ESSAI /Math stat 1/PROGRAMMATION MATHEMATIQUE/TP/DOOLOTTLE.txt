@@ -1,0 +1,20 @@
+def DOOLOTTLE(A):
+     n = A.nrows()
+     U=matrix(QQ,n,n)
+     L=matrix(QQ,n,n,1)
+     if det(A)==0:
+          return("impossible que PA=LU ni A=LU")
+     else:
+          for i in range(n):
+               for j in range(i,n):
+                    U[i,j]=A[i,j]-add(L[i,k]*U[k,j] for k in range(i))
+               for j in range (i+1,n)
+                    if U[i,i]==0:
+                         return("pas de factorisation A=LU possible")
+                    else:
+                         L[j,i]=(1/U[i,i]*(A[j,i]-add(L[j,k]*U[k,i] for k in range(i)))
+     U[n-1,n-1]=A[n-1,n-1]-add(L[n-1,k]*U[k,n-1] for k in range(n-1))
+     return(L,U,L*U,A==L*U)
+A=matrix([[3,1,2],[3,2,6],[6,1,-1]])
+show(A)
+DOOLITTLE(A)

@@ -1,0 +1,121 @@
+var('x')
+f(x)=sin(x)
+f
+xdata=[-1,-1/2,0,1/2,1]
+xdata
+
+
+
+def lagrange(f,xdata):
+    P=0
+    n=len(xdata)
+    for i in range(n):
+        L=1
+        for j in range(n):
+            if i<>j:
+                L=L*((x-xdata[j])/(xdata[i]-xdata[j]))
+        P=P+f(xdata[i])*L
+    return(expand(P))
+
+
+
+lagrange(f,xdata)
+
+lagrange(x^2,[0,1,2])
+
+from pylab import arange
+xdata = arange(-1.0,1.1,0.5)
+f=1/(1+14*x^2)
+
+P = lagrange(f,xdata)
+R = plot(f, -1,1, color="blue")
+Q = plot(P, -1,1, color="brown")
+n = len(xdata)-1
+s = Graphics()
+for i in range(n+1):
+    xi = xdata[i]
+    fi = f(xdata[i])
+    s = s + point((xi,fi), color="green", size=60)
+show(R+Q+s)  
+
+
+from pylab import arange
+xdata = arange(-1.0,1.1,0.2)
+f=1/(1+14*x^2)
+R = plot(f, -1,1, color="blue")
+Q = plot(P, -1,1, color="brown")
+n = len(xdata)-1
+s = Graphics()
+for i in range(n+1):
+    xi = xdata[i]
+    fi = f(xdata[i])
+    s = s + point((xi,fi) , color="green" , size=60)
+show(R+Q+s)
+
+
+a=-1; b=1 ; n=5;
+g=float(pi)
+
+
+ydata=[simplify((a+b)/2+(b-a)/2*cos((2*k+1)*g/(2*n+2))) for k in range(n+1)]
+print(ydata)
+
+f=1/(1+14*x^2)
+P = lagrange(f,ydata)
+A = plot(f, -1,1, color="red")
+B = plot(P, -1,1, color="grey")
+s = Graphics()
+for i in range(n+1):
+    xi = xdata[i]
+    fi = f(xdata[i])
+    s = s + point((xi,fi) , color="green" , size=60)
+show(A+B+s)
+
+n= 20
+xdata = [cos((2*i+1)/(2*n+2)*float(pi)) for i in range (n+1)]
+P = lagrange(f,xdata)
+C = plot(f, -1,1, color="black")
+D = plot(P, -1,1, color="pink")
+s = Graphics()
+for i in range(n+1):
+    xi = xdata[i]
+    fi = f(xdata[i])
+    s = s + point((xi,fi) , color="green" , size=60)
+show(C+D+s)
+
+show(R+Q+A+B+C+D+s)
+(Décomposition en valeurs singulières)
+A = matrix([[1,1],[1,-1]])
+show(A)
+
+#matrix_plot(A)
+
+B=A*transpose(A)
+show(B)
+
+B.eigenspaces_left() 
+
+U = identity_matrix(2)
+D = diagonal_matrix([2,2])
+B == U*D*transpose(U)
+
+A = matrix([[3,1,1],[-1,3,1]])
+show(A)
+
+B=A*transpose(A)
+show(B)
+
+U = matrix(2,2,[1/sqrt(2) , 1/sqrt(2) , 1/sqrt(2) , -1/sqrt(2)])
+D = diagonal_matrix([12,10])
+B == U*D*transpose(U)
+
+C = transpose(A)*A
+C.eigenspaces_left()
+
+V = matrix(3,3,[1/sqrt(6) , 2/sqrt(5) , 1/sqrt(30) , 2/sqrt(6), -1/sqrt(5) , 2/sqrt(30), 1/sqrt(6) , 0 , -5/sqrt(30)])
+Dprim = diagonal_matrix([12,10,0])
+C == V*Dprim*transpose(V)
+
+S = matrix(2,3, [sqrt(12).n(),0,0,0,sqrt(10).n(),0])
+Aprim = U*S*transpose(V).n()
+

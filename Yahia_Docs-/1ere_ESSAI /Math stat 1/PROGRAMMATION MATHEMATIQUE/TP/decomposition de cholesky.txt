@@ -1,0 +1,24 @@
+#decomposition de cholesky
+a = [4,4,4]
+c = [2,2]
+n = len(a)
+A = matrix(RR , n , n)
+for i in range(n):
+     A[i,i] = a[1]
+for i in range (n-1):
+     A[i,i+1] = c[i]
+     A[i+1,i] = c[i]
+show(A)
+A.plot()
+l=a
+m=c
+l[0]= sqrt(a[0])
+for i in range (n-1):
+     m[i]=c[i]/l[i]
+     l[i+1]=sqrt(a[i+1]-m[i]^2)
+L=matrix(RR,n,n)
+for i in range(n):
+     L[i,i]=l[i]
+for i in range(n-1):
+     L[i+1,i]=m[i]
+show(L)

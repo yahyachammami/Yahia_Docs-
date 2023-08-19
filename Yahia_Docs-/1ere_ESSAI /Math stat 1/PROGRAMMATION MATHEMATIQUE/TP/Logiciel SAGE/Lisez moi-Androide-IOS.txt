@@ -1,0 +1,10 @@
+vous pouvez télécharger SageMath pour windows de ce lien
+
+et il est notamment disponible sur les tablettes:
+pour la version d'Androide vous la trouverez ici
+https://play.google.com/store/apps/details?id=org.sagemath.droid
+et pour la version de l'IOS 4.3 et ultérieur , vous la trouverez ici
+https://itunes.apple.com/fr/app/sage-math/id496492945?mt=8
+
+
+

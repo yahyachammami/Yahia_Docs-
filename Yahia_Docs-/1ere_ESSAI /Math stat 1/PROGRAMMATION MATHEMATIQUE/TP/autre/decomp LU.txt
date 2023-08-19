@@ -1,0 +1,21 @@
+def factLU(n):
+    a=random_matrix(QQ,n,n)
+    l=matrix(QQ,n,n,1)
+    u=copy(a)
+    if det(u)==0:
+        return("a n est pas inversible")
+    else:
+        for k in range(n-1):
+            if u[k,k]==0:
+                return('a n admet pas une décomposition LU')
+            else:
+                for i in range(k+1,n):
+                    l[i,k]=u[i,k]/u[k,k]
+                    for j in range(k+1,n):
+                        u[i,j]=u[i,j]-(u[i,k]*u[k,j])/u[k,k]
+                for j in range(k+1,n):
+                    u[j,k]=0
+    return(a,l,u,l*u,l*u==a)
+@interact
+def _(n=(3,(2..10))):
+    show(factLU(n))    
