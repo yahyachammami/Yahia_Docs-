@@ -1,0 +1,1 @@
+La résolution de l'exercice 3b est semblable à l'exemple 1 du cours 5 page 8. c'est le même concept juste vous changez les noms (de  classes , de table et base de données)
