@@ -1,6 +1,6 @@
 # 👋 Hello Fellas ...     
 
-Asslema ena Yahia ! 
+Asslema ena **Yahia** ! 
 
 Aweel aam tohtt fih controle mal9iitch bach nriivez XD kontt nafsa3 barcha bach net3alm hajet wahdi o makanch aandi cours. Bon hata eli nkalemhom west l 3am mayab3tholiich hhhh donc jeet l fekra eno naamel update l docs o yab9aw lel etudiants eli maya7dhrouch o yal9aw bach yriivzou.
 
@@ -20,7 +20,7 @@ I really appreciate the professor's efforts, but you need to work on improving y
 
 ## 🔭 I’m looking to collaborate on ...
 
-- 🤓**Academic Project** ：You can commit your project with basic git command or reach me and i will do all the work 💬.
+- 🤓**Academic Project**：You can commit your project with basic git command or reach me and i will do all the work 💬.
 - 🎯**Find Internship**：You can help Newcomers land their first professional job. If you recommend an internship. I would be happy to help facilitate the process 🌱.
 - 😎**Work or freelance opportunity**：If you had a side project and looking for help i can keep you in touch with professionals could help you 😄.
 
@@ -29,9 +29,9 @@ I really appreciate the professor's efforts, but you need to work on improving y
 
 
 - **WebSite or platform for Alumnis**：All is about connection . the more you know the more you understand your future
-- **3-month-meeting** ：I would love to guide and assist with the ESSAI event. If there's anything I can help with, please let me know.
+- **3-month-meeting**：I would love to guide and assist with the ESSAI event. If there's anything I can help with, please let me know.
 - **Ai/Data webinar or conference** : I love participating and orginizing these kind of event , So i meet diverse range of tunisian inspiring-minds from Google, IBM, Microsoft and AWS 
-- **Discord channel** ：You can reach me to join my student grp from SUPCOM, ENIT, ENISO, ENETCOM, ENIS and ENIG. With each workshop an engineering school invites me to hold, my community grows.
+- **Discord channel**：You can reach me to join my student grp from SUPCOM, ENIT, ENISO, ENETCOM, ENIS and ENIG. With each workshop an engineering school invites me to hold, my community grows.
 
 
 ## ⚡ Fun fact: ...
@@ -42,4 +42,4 @@ I really appreciate the professor's efforts, but you need to work on improving y
 
 ## 🔥 Feedbacks
 
-- **I don't pay attention to your feedback, and I'm not concerned about it. If you have anything additional to add, you know where to find me.**
+- **I don't pay attention to your feedbacks, and I'm not concerned about it. If you have anything to add, you know where to find me.**
