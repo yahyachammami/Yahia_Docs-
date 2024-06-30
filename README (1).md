@@ -3,11 +3,11 @@
 
 
 
-## 📫 How to reach me:
+## 📫 How to reach us:
 
-- Yahia Chammami：<https://www.linkedin.com/in/yahia-chammami-157003249/>
-- Aymen Khouja：<https://www.linkedin.com/in/aymen-khouja-23b948230/>
-- 论坛：<https://codekitchen.community>
+- **Yahia Chammami**：<https://www.linkedin.com/in/yahia-chammami-157003249/>
+- **Aymen Khouja**：<https://www.linkedin.com/in/aymen-khouja-23b948230/>
+- **Junior Josephson**：<https://www.linkedin.com/in/junior-josephson-72290b245/>
 
 
 ## Books
