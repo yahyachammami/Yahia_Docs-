@@ -5,8 +5,8 @@
 
 ## 📫 How to reach me:
 
-- Yahia Chammami：<[https://docs.helloflask.com](https://www.linkedin.com/in/yahia-chammami-157003249/)>
-- Aymen Khouja：[<https://helloflask.com>](https://www.linkedin.com/in/aymen-khouja-23b948230/)
+- Yahia Chammami：<https://www.linkedin.com/in/yahia-chammami-157003249/>
+- Aymen Khouja：<https://www.linkedin.com/in/aymen-khouja-23b948230/>
 - 论坛：<https://codekitchen.community>
 
 
