@@ -37,11 +37,10 @@ I really appreciate the professor's efforts, but you need to work on improving y
 
 ## ⚡ Fun fact: ...
 
-- The same process repeats every year; you don't need to work hard, just check my docs and work smart. (a7fedh XD)
+- **The same process repeats every year; you don't need to work hard, just check my docs and work smart**. (a7fedh XD)
 
 
 
 ## 🔥 Feedbacks
 
-- 勘误和建议：创建 [issue](https://github.com/greyli/helloflask/issues)
-- 问题求助 & 讨论：在[代码厨房论坛](https://codekitchen.community)创建讨论
+- **I don't pay attention to your feedback, and I'm not concerned about it. If you have anything additional to add, you know where to find me.**
