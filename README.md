@@ -36,7 +36,7 @@ I really appreciate the professor's efforts, but you need to work on improving y
 
 ## ⚡ Fun fact: ...
 
-- **The same process repeats every year; you don't need to work hard, just check my docs and work smart**. (a7fedh XD)
+- **The same process repeats every year So you don't need to work hard, just check my docs and work smart**. (a7fedh XD)
 
 
 
