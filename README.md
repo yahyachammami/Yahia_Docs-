@@ -8,7 +8,7 @@ After I launched the first initiative, @Aymen-khoujaa and @Josephson-Junior-Raza
 
 No Need to thank me just the time eli tafss3ou o ma7dhaarteech biih fel class estghalou o t3alem hajet jdida . presque 60% mel etudiants 0 competances techniques 5ater 3adew wa9thom fel class. Try hard to learn new skills and understand more about the market and its opportunities.
 
-I really appreciate the professor's efforts, but you need to work on improving yourself because there's always something new in the revolutionary AI field, so you need to stay in touch.
+I really appreciate the professor's efforts, but students need to work more on improving themselves because there's always something new in the revolutionary Ai field, so they need to stay in touch.
 
 
 ## 📫 How to reach us ...
