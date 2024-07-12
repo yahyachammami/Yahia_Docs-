@@ -6,7 +6,7 @@ Aweel aam tohtt fih controle mal9iitch bach nriivez XD kontt nafsa3 barcha bach 
 
 After I launched the first initiative, @Aymen-khoujaa and @Josephson-Junior-Razafindratsiza helped me develop this small project during my second year, and I'm so glad they did !
 
-No Need to thank me just the time eli tafss3ou o ma7dhaarteech biih fel class estghalou o t3alem hajet jdida . presque 60% mel etudiants 0 competences techniques 5ater 3adew wa9thom fel class. Try hard to learn new skills and understand more about the market and its opportunities.
+No Need to thank me just the time eli tafss3ou o ma7dhaarteech biih fel class estghalou o t3alem hajet jdida. Try hard to learn new skills and understand more about the market and its opportunities.
 
 I really appreciate the professor's efforts, but students need to work more on improving themselves because there's always something new in the revolutionary Ai field, so they need to stay in touch.
 
