@@ -13,9 +13,9 @@ I really appreciate the professor's efforts, but students need to work more on i
 
 ## 📫 How to reach us ...
 
-- **Yahia Chammami**：<https://www.linkedin.com/in/yahia-c-157003249/>
-- **Aymen Khouja**：<https://www.linkedin.com/in/aymen-khouja-23b948230/>
-- **Junior Josephson**：<https://www.linkedin.com/in/junior-josephson-72290b245/>
+- **Yahia Chammami**：<yahya.chammami@essai.ucar.tn>
+- **Aymen Khouja**：<aymen.khouja@essai.ucar.tn>
+- **Junior Josephson**：<josephson.junior.razafindratsiza@essai.ucar.tn>
 
 
 ## 🔭 I’m looking to collaborate on ...
