@@ -29,11 +29,8 @@ I really appreciate the professor's efforts, but students need to work more on i
 
 
 - **WebSite or platform for Alumnis**：All is about connection . the more you know the more you understand your future.
-- **3-month-meeting**：I would love to guide and assist with the ESSAI event. If there's anything I can help with, please let me know.
 - **Ai/Data webinar or conference** : I love participating and orginizing these kind of event , So i meet diverse range of tunisian inspiring-minds from Google, IBM, Microsoft and AWS. So I will keep you in touch regarding these events.
-- **Discord channel**：You can reach me to join my student grp from SUPCOM, ENIT, ENISO, ENETCOM, ENIS and ENIG. With each workshop an engineering school invites me to hold, my community grows.
-
-
+  
 ## ⚡ Fun fact: ...
 
 - **The same process repeats every year So you don't need to work hard, just check my docs and work smart**. (a7fedh XD)
