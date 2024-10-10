@@ -3,10 +3,12 @@ donc fma plentyy of ressources on the net, I recommend reading and researching b
 Kaggle is your friend, datacamp is your friend, coursera is your friend."
 - Aymen Khouja
 
-
+-----------------------------------------------------------------
 The genius who wrote before me (Aymen khouja) is literally the first person who introduced me to machine learning. At that time, I didn’t even know such a thing existed. 
 I hope he sees my words and knows how grateful I am to have met him and worked together.
 - Yahyaa Chammami
+  
+-----------------------------------------------------------------
 -----------------------------------------------------------------
 Useful links :
 https://drive.google.com/drive/folders/0B6mYnb1g2UTDcndaY2ZxLWp3UGs?resourcekey=0-ItqAqnfVzRqMI4qrJ9Xncw - A series of books about Machine learning and deep learning
