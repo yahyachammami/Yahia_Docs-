@@ -14,7 +14,7 @@ https://youtube.com/watch?v=jbRNGuz3IRM&feature=share - What is Kaggle??
 
 
 -----------------------------------------------------------------
-**The genius who wrote before me (Aymen khouja) is literally the first person who introduced me to machine learning. At that time, I didn’t even know such a thing existed. 
-I hope he sees my words and knows how grateful I am to have met him and worked together.**
+The genius who wrote before me (Aymen khouja) is literally the first person who introduced me to machine learning. At that time, I didn’t even know such a thing existed. 
+I hope he sees my words and knows how grateful I am to have met him and worked together.
 - Yahyaa Chammami **aout 2024**
   
