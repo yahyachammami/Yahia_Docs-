@@ -1,0 +1,111 @@
+Exercice 2 : reprendre l'exercice 1 avec PyTorch. 
+
+1) Pour cela aller sur les liens suivants :
+
+	a) PyTorch Tutorial: Building a Simple Neural Network From Scratch
+	b) Youtube: Pytorch MNIST : Réseau de neurones (Part 1) - Formation à Pytorch et au NLP # 1 et 2 (Thibault Neveu)
+
+
+2) Utiliser le code suivant dont les étapes sont expliquées ci-dessous : 
+
+
+
+1. **Chargement et transformation des données** : On utilise des transformations pour normaliser les images MNIST afin de centrer les valeurs autour de 0. Ensuite, les données sont chargées dans des `DataLoader` pour un traitement efficace par batch.
+
+2. **Définition du modèle** : Le réseau de neurones est défini avec trois couches entièrement connectées (`fc1`, `fc2`, `fc3`). Les fonctions d'activation `ReLU` sont appliquées après les deux premières couches, et la couche finale produit les logits pour les 10 classes de chiffres.
+
+3. **Fonction de perte et optimiseur** : Nous utilisons la `CrossEntropyLoss`, adaptée aux problèmes de classification multi-classes, et un optimiseur `SGD` avec un taux d'apprentissage de 0,01.
+
+4. **Entraînement** : Le modèle est entraîné sur `n_epochs` époques. Pour chaque batch d'images, les gradients sont calculés avec `loss.backward()` et les poids sont mis à jour avec `optimizer.step()`.
+
+5. **Évaluation** : Les prédictions du modèle sont comparées aux labels pour le jeu de test. On utilise `torch.no_grad()` pour désactiver le calcul des gradients durant l'évaluation, ce qui accélère l'inférence et économise de la mémoire.
+
+6. **Rapport de classification et matrice de confusion** : Après l'évaluation, `classification_report` et `confusion_matrix` fournissent une évaluation des performances. La matrice de confusion est affichée avec une carte thermique (`heatmap`) pour visualiser les performances de chaque classe.
+
+---------------------------------------------------------------------
+
+
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision
+import torchvision.transforms as transforms
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# 1. Charger et transformer les données
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))  # Normalisation pour centrer les données autour de 0
+])
+
+train_dataset = torchvision.datasets.MNIST(root='./data', train=True, download=True, transform=transform)
+test_dataset = torchvision.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+# 2. Définir le modèle
+class SimpleNN(nn.Module):
+    def __init__(self):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(28 * 28, 128)  # Première couche entièrement connectée
+        self.fc2 = nn.Linear(128, 64)       # Deuxième couche
+        self.fc3 = nn.Linear(64, 10)        # Sortie de 10 classes
+
+    def forward(self, x):
+        x = x.view(-1, 28 * 28)  # Aplatir les images de 28x28 en vecteurs de taille 784
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+model = SimpleNN()
+
+# 3. Définir la fonction de perte et l'optimiseur
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+# 4. Entraîner le modèle
+n_epochs = 5
+for epoch in range(n_epochs):
+    model.train()
+    running_loss = 0.0
+    for images, labels in train_loader:
+        optimizer.zero_grad()           # Réinitialiser les gradients
+        outputs = model(images)         # Passer les données dans le modèle
+        loss = criterion(outputs, labels)  # Calculer la perte
+        loss.backward()                 # Calculer les gradients
+        optimizer.step()                # Mettre à jour les poids
+        running_loss += loss.item()
+
+    print(f"Epoch [{epoch+1}/{n_epochs}], Loss: {running_loss/len(train_loader):.4f}")
+
+# 5. Évaluer le modèle sur le jeu de test
+model.eval()
+y_true = []
+y_pred = []
+
+with torch.no_grad():
+    for images, labels in test_loader:
+        outputs = model(images)
+        _, predicted = torch.max(outputs, 1)
+        y_true.extend(labels.tolist())
+        y_pred.extend(predicted.tolist())
+
+# 6. Classification Report et Matrice de Confusion
+print("\nClassification Report:")
+print(classification_report(y_true, y_pred))
+
+conf_matrix = confusion_matrix(y_true, y_pred)
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=range(10), yticklabels=range(10))
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.show()
+
+

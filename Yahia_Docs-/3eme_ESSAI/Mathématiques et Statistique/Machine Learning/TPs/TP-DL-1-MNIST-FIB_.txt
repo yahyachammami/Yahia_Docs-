@@ -1,0 +1,195 @@
+Exercice 1 : Un orogramme pour une approche complète de l'entraînement, de l'évaluation et de la sauvegarde d'un modèle sur les données MNIST en utilisant Keras/TensorFlow.
+
+
+- Installer et importer les librairies 
+- Importer les données : dans le cas de MNIST,  visualiser des images
+- Préparer les données : adapter la target à la loss function (i.e. categorical ous sparse_categorical). Dans le cas des images MNIST, flatten, normalize
+- Pourquoi un Train/Validation/Test split ?
+- Construire le modèle : 
+	- sequential : choix de l'architecture du modèle et des fonction d'activation dans les couches te à la sortie
+	- mode.summary : vérifier le nombre de paramètres à estimer dans chaque couche
+- Lancer le modèle sur Train et Validation : 
+	- modèle.compile : loss, optimizer, metric 
+	- model.fit  : Train, batch_size, epochs,  verbose, éventuellement validation_split ou validation_data
+                    
+- Utiliser history = moedl.fit pour représenter les courbes d'apprentissage : courbes accuracy et loss sur les données Train et Validation
+- Evaluer le modèle sur Test : model.evaluate 
+- Effectuer des prédictions avec le modèle : model.predict
+- Sauvegarder  le modèle : model.save après avoir installer h5py
+- Loader le modèle : 
+	- redémarrer le notebook, 
+	- faire les imports nécessaires et exécuter les parties du code relatives aux données
+	- faire les prédictions avec le modèle sauvegardé après avoir exécuté load_model
+
+
+
+
+Pour cela remplacer les parties numérotées entre  crochet par l'une des propositions suivantes :
+
+-------------------------------------------------------------------------
+x_test - y_test - save - load_model - "adam" - 32 - 10 -
+
+Dense - matplotlib.pyplot - Dense - summary - categorical_crossentropy -
+
+"gray"- 28*28 - to_categorical - tensorflow h5py matplotlib - load_model
+-------------------------------------------------------------------------    
+
+
+
+
+
+# 1. Installer les bibliothèques nécessaires
+!pip install [1]
+
+
+# 2. Importer les bibliothèques
+import tensorflow as tf
+from tensorflow.keras.models import Sequential, [2]
+from tensorflow.keras.layers import [3], Flatten
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.datasets import mnist
+import [4] as plt
+import numpy as np
+
+
+# 3. Charger les données MNIST
+(x_train, y_train), (x_test, y_test) = [5]
+
+
+# 4. Visualiser quelques images
+plt.figure(figsize=(10, 5))
+for i in range(12):
+    plt.subplot(3, 4, i + 1)
+    plt.imshow(x_train[i], cmap=[6])
+    plt.title(f"Label: {y_train[i]}")
+    plt.axis("off")
+plt.show()
+
+
+# 5. Préparer les données : Normalisation et transformation des labels
+x_train = x_train.reshape(-1, [7]).astype("float32") / 255
+x_test = x_test.reshape(-1, [7]).astype("float32") / 255
+y_train = [8](y_train, 10)
+y_test = [8](y_test, 10)
+
+
+# 6. Split de validation
+x_val = x_train[:10000]
+y_val = y_train[:10000]
+x_train = x_train[10000:]
+y_train = y_train[10000:]
+
+# Pourquoi un Train/Validation/Test split ?
+# Réponse : Le jeu de données est divisé en trois parties :
+
+# Entraînement (Train) : Utilisé pour ajuster les paramètres du modèle.
+# Validation : Utilisé pour évaluer les performances du modèle pendant l'entraînement et ajuster l’architecture ou les 
+# hyperparamètres afin d'éviter le surapprentissage.
+# Test : Permet d’évaluer la performance finale et généralisée du modèle sur des données jamais vues.
+
+
+# 7. Définir le modèle séquentiel
+model = Sequential([
+    [3](input_shape=(28*28,)),
+    [9](128, activation="relu"),
+    [9](64, activation="relu"),
+    [9](10, activation="softmax")
+])
+
+
+# 8. Afficher un résumé du modèle
+model.[10]()
+
+
+# 9. Compiler le modèle
+model.compile(
+    loss=[11],
+    optimizer=[12],
+    metrics=["accuracy"]
+)
+
+
+# 10. Entraîner le modèle
+history = model.fit(
+    x_train, y_train,
+    batch_size=[13],
+    epochs=[14],
+    verbose=1,
+    validation_data=(x_val, y_val)
+)
+
+# 11. Tracer les courbes de perte et d'accuracy
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 2, 1)
+plt.plot(history.history["loss"], label="Train Loss")
+plt.plot(history.history["val_loss"], label="Validation Loss")
+plt.title("Courbe de Perte")
+plt.xlabel("Épochs")
+plt.ylabel("Perte")
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history["accuracy"], label="Train Accuracy")
+plt.plot(history.history["val_accuracy"], label="Validation Accuracy")
+plt.title("Courbe d'Accuracy")
+plt.xlabel("Épochs")
+plt.ylabel("Accuracy")
+plt.legend()
+plt.show()
+
+
+# 12. Évaluation du modèle sur le jeu de test
+test_loss, test_accuracy = model.evaluate([15], [16], verbose=0)
+print(f"Test Loss: {test_loss:.4f}")
+print(f"Test Accuracy: {test_accuracy:.4f}")
+
+
+# 13. Effectuer des prédictions
+predictions = model.predict([15][:5])
+
+for i in range(5):
+    plt.imshow(x_test[i].reshape(28, 28), cmap="gray")
+    plt.title(f"Prédiction: {np.argmax(predictions[i])}")
+    plt.axis("off")
+    plt.show()
+
+
+# 14. Prédictions pour la classification report et la confusion matrix
+y_pred = model.predict(x_test)
+y_pred_classes = np.argmax(y_pred, axis=1)  # Convertir les prédictions en classes
+y_true = np.argmax(y_test, axis=1)          # Convertir les labels one-hot en classes
+
+#  Afficher le rapport de classification
+print("\nClassification Report:")
+print(classification_report(y_true, y_pred_classes))
+
+#  Afficher la matrice de confusion
+conf_matrix = confusion_matrix(y_true, y_pred_classes)
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=range(10), yticklabels=range(10))
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.show()
+
+
+# 15. Sauvegarder le modèle
+model.[17]("mnist_model.h5")
+
+
+# 16. Charger le modèle sauvegardé
+model_loaded = [18]("mnist_model.h5")
+loaded_predictions = model_loaded.predict(x_test[:5])
+
+for i in range(5):
+    plt.imshow(x_test[i].reshape(28, 28), cmap="gray")
+    plt.title(f"Prédiction après chargement: {np.argmax(loaded_predictions[i])}")
+    plt.axis("off")
+    plt.show()
+
+
+
+ 
+
+
