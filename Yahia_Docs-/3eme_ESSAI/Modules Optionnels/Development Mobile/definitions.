@@ -1,0 +1,44 @@
+// Définitions et exemples des concepts Android
+
+// SDK (Software Development Kit) : Un ensemble d'outils et de bibliothèques permettant le développement d'applications Android.
+// Exemple : Le SDK Android inclut des outils comme adb, emulator, et un compilateur.
+String definitionSDK = "SDK : Ensemble d'outils pour le développement d'applications Android.";
+
+// Android : Un système d'exploitation open-source pour appareils mobiles basé sur Linux.
+String definitionAndroid = "Android : Système d'exploitation open-source pour appareils mobiles.";
+
+// Virtual Device (AVD) : Un émulateur permettant de tester les applications sur des appareils virtuels.
+String definitionVirtualDevice = "AVD : Emulateur pour tester les applications sur des appareils virtuels.";
+
+// Émulateur : Logiciel qui simule un appareil physique pour tester une application.
+String definitionEmulateur = "Émulateur : Simule un appareil physique pour effectuer des tests.";
+
+// Genymotion : Un émulateur rapide et performant pour tester des applications Android.
+String definitionGenymotion = "Genymotion : Émulateur performant pour tester les applications Android.";
+
+// Linear Layout : Un conteneur qui aligne les éléments enfants horizontalement ou verticalement.
+String definitionLinearLayout = "Linear Layout : Organise les éléments horizontalement ou verticalement.";
+
+// Margin (gauche/droite) : Définit l'espace entre un élément et ses voisins à gauche ou à droite.
+String definitionMargin = "Margin : Définit l'espace autour d'un élément, par exemple à gauche ou à droite.";
+
+// Spinner : Une vue permettant de sélectionner une option dans une liste déroulante.
+String definitionSpinner = "Spinner : Permet de choisir une option dans une liste déroulante.";
+
+// Radio Button : Une vue permettant de sélectionner une seule option dans un groupe.
+String definitionRadioButton = "Radio Button : Permet de sélectionner une option parmi un groupe.";
+
+// Radio Group : Un conteneur qui regroupe des boutons radio pour une sélection exclusive.
+String definitionRadioGroup = "Radio Group : Conteneur regroupant des boutons radio pour une sélection unique.";
+
+// ListView : Une vue qui affiche une liste d'éléments défilables.
+String definitionListView = "ListView : Affiche une liste défilable d'éléments.";
+
+// PutExtra : Une méthode utilisée pour attacher des données supplémentaires à un Intent.
+String definitionPutExtra = "PutExtra : Ajoute des données supplémentaires à un Intent.";
+
+// Intent : Un objet utilisé pour naviguer entre les activités ou interagir avec des composants.
+String definitionIntent = "Intent : Permet de naviguer entre activités ou d'interagir avec des composants.";
+
+// AndroidManifest : Fichier XML qui définit les activités, permissions, et autres configurations globales de l'application.
+String definitionManifest = "AndroidManifest : Définit les configurations globales, activités, et permissions.";
