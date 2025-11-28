@@ -6,7 +6,6 @@ And quiet progress is still progress.**
 
 <img src="https://github.com/yahyachammami/Yahia_Docs-/blob/a0f13c29351dba624324ed4ae21aee79f6f8ee01/Yahia_Docs-/3eme_ESSAI/PFE%20Reports/1750442273419.jpg" alt="image alt" width="300">
 
-
 ------
 
 Not everyone will understand your journey.  
@@ -46,4 +45,6 @@ You deserve to believe in yourself, even when no one else does.
 And trust me, one day you’ll look back and thank yourself for not giving up.
 
 **Keep going. You’re already winning.**
+
+> **Fuck Talan and Chekir and Fuck all those bastards 🖕 I was better than them, and I will always be.(same for you and your company) 😎🔥**
 
