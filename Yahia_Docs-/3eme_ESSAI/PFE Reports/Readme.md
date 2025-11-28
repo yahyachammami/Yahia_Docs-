@@ -4,10 +4,7 @@
 But remember: your progress is real, even if it’s quiet.
 And quiet progress is still progress.**
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/yahyachammami/Yahia_Docs-/a0f13c29351dba624324ed4ae21aee79f6f8ee01/3eme_ESSAI/PFE%20Reports/1750442273419.jpg" 
-       alt="image alt" width="300">
-</div>
+<p align="center"><img src="https://raw.githubusercontent.com/yahyachammami/Yahia_Docs-/a0f13c29351dba624324ed4ae21aee79f6f8ee01/3eme_ESSAI/PFE%20Reports/1750442273419.jpg" alt="image alt" width="300"></p>
 
 
 
