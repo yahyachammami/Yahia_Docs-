@@ -8,11 +8,10 @@
 
 ------
 
-People might ignore your effort, doubt your capabilities, or pretend your progress is small.
-But **don’t ever underestimate yourself you are better than the version of you that started this journey**, and that’s what truly counts.
+People may ignore your effort or doubt your abilities. But never underestimate yourself **you’re already better than the person you were when you started**, and that’s what truly matters.
 
-Every step you take matters. Every hour you spend learning, building, and pushing forward brings you closer to the person you’re meant to be.
-And trust me, one day you’ll look back and thank yourself for not giving up.
+Every step you take counts. Every hour you spend learning and pushing forward brings you closer to who you’re meant to be. One day, you’ll look back and thank yourself for not giving up.
+
 **Keep going. You’re already winning.**
 
 
