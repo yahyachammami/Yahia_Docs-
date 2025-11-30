@@ -8,7 +8,7 @@
 
 ------
 
-People They might ignore your effort, doubt your capabilities, or pretend your progress is small.
+People might ignore your effort, doubt your capabilities, or pretend your progress is small.
 But **don’t ever underestimate yourself you are better than the version of you that started this journey**, and that’s what truly counts.
 
 Every step you take matters. Every hour you spend learning, building, and pushing forward brings you closer to the person you’re meant to be.
