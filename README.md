@@ -19,24 +19,10 @@ I really appreciate the professor's efforts, but students need to work more on i
 - **Aymen Khouja**：<aymen.khouja@essai.ucar.tn>
 - **Junior Josephson**：<josephson.junior.razafindratsiza@essai.ucar.tn>
 
-
-## 🔭 I’m looking to collaborate on ...
-
-- 🤓**Academic Project**：You can commit your project with basic git command or reach me and i will do all the work 💬.
-- 🎯**Find Internship**：You can help Newcomers land their first professional job. If you recommend an internship. I would be happy to help facilitate the process 🌱.
-- 😎**Work or freelance opportunity**：If you had a side project and looking for help i can keep you in touch with professionals could help you 😄.
-
-
-## 🔭 I’m currently working on ...
-
-
-- **WebSite or platform for Alumnis**：All is about connection . the more you know the more you understand your future.
-- **Ai/Data webinar or conference** : I love participating and orginizing these kind of event , So i meet diverse range of tunisian inspiring-minds from Google, IBM, Microsoft and AWS. So I will keep you in touch regarding these events.
   
 ## ⚡ Fun fact: ...
 
 - **The same process repeats every year So you don't need to work hard, just check my docs and work smart**. (a7fedh XD)
-
 
 
 ## 🔥 Feedbacks
