@@ -2,8 +2,6 @@
 
 **If you’re reading this, it means you’ve already there 🌟. You made it this far because you’re stronger than you think, and more capable than you ever give yourself credit for.**
 
-**There will be stress, confusion, and moments when you question everything. But remember: your progress is real, even if it’s quiet it still a progress.**
-
 <img src="https://github.com/yahyachammami/Yahia_Docs-/blob/a0f13c29351dba624324ed4ae21aee79f6f8ee01/Yahia_Docs-/3eme_ESSAI/PFE%20Reports/1750442273419.jpg" alt="image alt" width="300">
 
 ------
